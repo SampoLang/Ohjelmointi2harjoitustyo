@@ -1,0 +1,31 @@
+ebd30c2 (HEAD -> master, origin/master) aikamuuttujan nimi muutettu jsp-tiedostoon
+4e46bbc lisäsin pohjaprojektiin SQL tietokannan käyttömahdollisuuden, sqlite
+c680cb8 selvensin kontrollerin sisällön suomeksi
+afe661e Lisätty build status
+aeec025 Lisätty .travis.yml
+0330ea4 Merge pull request #2 from haagahelia/dependabot/maven/tomcat.version-9.0.35
+c5d6b6d Bump tomcat.version from 9.0.31 to 9.0.35
+f0a4b36 Servlettien paketit päivitetty.
+15c2ad6 Tomcat-version palautus 9:ään ja JSTL-kirjaston lisääminen.
+15124b8 javax-paketti päivitetty jakarta-paketiksi
+959c595 Päivtetty Tomcat 10.0.0-M3
+4d07d70 pom.xml:n kommentointi
+d2d4cac UTF-8 asetukset
+b1c595c sourceEncoding ja outputEncoding lisätty
+a316ca3 Merge pull request #1 from haagahelia/dependabot/maven/tomcat.version-9.0.31
+6b54ee9 Tomcatin päivitys 8.5.50 -> 9.0.31. Main-tiedoston refaktorointi ja kommentointi.
+1cddd17 Bump tomcat.version from 8.5.50 to 9.0.31
+b5a88bd Koodiesimerkki Tomcatin käynnistyksestä
+c03b7cb Koodiesimerkki Tomcatin käynnistyksestä
+0f09cd2 Korjattu typo
+8d81307 Muutettu alaviittauksen tyyli
+3b99325 UTF-8 käyttöön pyynnöissä ja vastauksissa
+5bbc5b0 Taustamateriaalin lisäys
+9e14ee5 Tabi välilyönneiksi
+c363154 Poistettu target-hakemistot classpathista
+e631838 Korjattu zip-paketin latauslinkki
+9a47a9e Terminate-ominaisuuden linkki
+2351876 Dokumentaation päivitys
+e158992 Tilapäishakemistot .gitignore-tiedostoon
+4a247f5 Lisätty .gitignore-tiedostot tyhjiin hakemistoihin
+b948225 Ensimmäinen versio esimerkkiprojektista

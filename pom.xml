@@ -55,6 +55,12 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.32.3.2</version>
         </dependency>
+        <dependency>
+        <!-- sql-lite ajurit Jbdc -->
+   	<groupId>org.xerial</groupId>
+   	<artifactId>sqlite-jdbc</artifactId>
+   	<version>3.8.7</version>
+	</dependency>
 		
 		<!-- Tuki JSP-sivujen Expressien Language -kielelle: -->
 		<dependency>

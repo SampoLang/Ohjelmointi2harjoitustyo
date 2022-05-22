@@ -1,53 +1,46 @@
-<%@ page language="java" contentType="text/html; utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="utf-8">
-	<title>Web application test page</title>
-	<link rel="stylesheet" href="/styles/demo.css">
+<meta charset="UTF-8">
+<title>Paivan Ruoka</title>
+<link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
 </head>
-
 <body>
-
-	<h1>🎉 Congratulations! 🎉</h1>
-
-	<p>If you are viewing this page on a browser, several technical
-		components appear to work properly:</p>
-	<ol>
-		<li>First of all, your browser was able to connect to your Tomcat
-			server</li>
-		<li>Second, the server was able to map your request to the <code>IndexServlet</code>
-			class and invoke its <code>doGet</code> method
-		</li>
-		<li>Third, the <code>doGet</code> method added additional
-			information to the request before forwarding it to this JSP file <code>/WEB-INF/index.jsp</code>
-			.
-		</li>
-	</ol>
-	<p>
-		The added information was set in an attribute
-		<code>aikaNyt</code>
-		and its value is:
-	</p>
-	<p class="time-now">${ aikaNyt }</p>
-	<p>Try refreshing the page and you will see the dynamic value
-		changing!</p>
-	<div style="background-color: #FFB6C1;">
-		<p class="external-css">
-			If you see this paragraph with a light green background color, your
-			browser was also able to retrieve and external CSS file. The
-			background color is defined in a file <a href="/styles/demo.css">/styles/demo.css</a>,
-			which was served to you by Tomcat as a static file. If the background
-			is red, there was an issue loading the file :(
-		</p>
-	</div>
-	<p>Text may be saved, loaded and transmitted with various different
-		encodings. If you see five star emojis here: ⭐️ ⭐️ ⭐️ ⭐️ ⭐️, it means
-		that the content was properly served and interpreted with UTF-8
-		encoding.</p>
-	<hr />
+<h1>Päivän ruoka</h1>
+    <div>
+        <form name = "ruokaEtsiminen"method = "get" action="paivanruoka" >
+        <fieldset>
+        <legend>Ongelmiä päättää päivän ruoka?<br> Ohjelma valitsee sinulle sopivan ruoan</legend>
+            <label for= "vaikeustaso">Valitse valmistusvaikeus:</label>
+              <select id="vaikeusaste" name="vaikeusaste" required>
+   		 		<option value="helppo">Helppo</option>
+    			<option value="keskivaikea">Keskivaikea</option>
+   		 		<option value="vaikea">Vaikea</option>
+   		 		</select>
+            <label>Valmistusaika max(h): <input type="number" name="valmistusaika" min="0.1" max="99" step="0.1" required></label>
+            <input type="submit" value="Lähetä">
+            </fieldset>
+        </form>
+        <form class = "lisaaRuoka" method="POST">
+        <fieldset>
+        <legend>Lisää ruoka listaan</legend>
+        <label>Nimi: <input type = "text" name = "lisays_nimi" required></label>
+        <label for= "helppous">Valitse valmistusvaikeus:</label>
+              <select id="vaikeusaste" name="lisays_vaikeusaste" required>
+   		 		<option value="helppo">Helppo</option>
+    			<option value="keskivaikea">Keskivaikea</option>
+   		 		<option value="vaikea">Vaikea</option>
+   		 		</select>
+        <label>Raaka-aineet: <input type = "text" name = "lisays_raakaaineet" required></label>
+        <label>valmistusaika(h): <input type = "number" name = "lisays_valmistuaika" min = "0.1" max = "99" step = "0.1" required></label>
+        <label>kuvalinkki: <input type = "text" name = "lisays_kuvalinkki" required></label>
+        <input type = "submit" value = "Lisää ruoka">
+        </fieldset>
+        </form>
+    </div>
+    <p id = onnistui></p>
 
 </body>
 </html>

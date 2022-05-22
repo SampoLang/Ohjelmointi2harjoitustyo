@@ -16,41 +16,41 @@ import org.apache.catalina.webresources.StandardRoot;
  */
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 
-        // Web-sovelluksen julkisten tiedostojen sijainti:
-        String webappDirPath = new File("src/main/webapp/").getAbsolutePath();
+		// Web-sovelluksen julkisten tiedostojen sijainti:
+		String webappDirPath = new File("src/main/webapp/").getAbsolutePath();
 
-        // Tomcat-palvelin, joka huolehtii HTTP-liikenteestä:
-        Tomcat tomcat = new Tomcat();
+		// Tomcat-palvelin, joka huolehtii HTTP-liikenteestä:
+		Tomcat tomcat = new Tomcat();
 
-        // Asetetaan Tomcatin HTTP-portti. Jos "PORT" löytyy ympäristömuuttujista,
-        // käytetään sitä. Muussa tapauksessa käytetään porttia 8080:
-        String httpPort = System.getenv().getOrDefault("PORT", "8080");
-        tomcat.setPort(Integer.valueOf(httpPort));
+		// Asetetaan Tomcatin HTTP-portti. Jos "PORT" löytyy ympäristömuuttujista,
+		// käytetään sitä. Muussa tapauksessa käytetään porttia 8080:
+		String httpPort = System.getenv().getOrDefault("PORT", "8080");
+		tomcat.setPort(Integer.valueOf(httpPort));
 
-        // Luodaan Connector-olio, joka kuuntelee asettamaamme porttia:
-        tomcat.getConnector();
+		// Luodaan Connector-olio, joka kuuntelee asettamaamme porttia:
+		tomcat.getConnector();
 
-        // Lisätään oma sovelluksemme Tomcatiin palvelimen juureen:
-        Context webApp = tomcat.addWebapp("/", webappDirPath);
+		// Lisätään oma sovelluksemme Tomcatiin palvelimen juureen:
+		Context webApp = tomcat.addWebapp("/", webappDirPath);
 
-        // HUOM! Jos haluat, että palvelin käynnistää itsensä uudelleen muutettuasi
-        // tiedostoja, poista kommentti seuraavalta riviltä:
-        // webApp.setReloadable(true);
+		// HUOM! Jos haluat, että palvelin käynnistää itsensä uudelleen muutettuasi
+		// tiedostoja, poista kommentti seuraavalta riviltä:
+		webApp.setReloadable(true);
 
-        // Määritellään sovelluksemme resurssien sijainnit:
-        WebResourceRoot resources = new StandardRoot(webApp);
-        resources.addPreResources(
-                new DirResourceSet(resources, "/WEB-INF/classes", new File("target/classes").getAbsolutePath(), "/"));
-        webApp.setResources(resources);
+		// Määritellään sovelluksemme resurssien sijainnit:
+		WebResourceRoot resources = new StandardRoot(webApp);
+		resources.addPreResources(
+				new DirResourceSet(resources, "/WEB-INF/classes", new File("target/classes").getAbsolutePath(), "/"));
+		webApp.setResources(resources);
 
-        // Asetetaan UTF-8 -merkistö HTTP-pyyntöihin ja -vastauksiin:
-        webApp.setRequestCharacterEncoding("utf-8");
-        webApp.setResponseCharacterEncoding("utf-8");
+		// Asetetaan UTF-8 -merkistö HTTP-pyyntöihin ja -vastauksiin:
+		webApp.setRequestCharacterEncoding("utf-8");
+		webApp.setResponseCharacterEncoding("utf-8");
 
-        // Käynnistetään palvelin ja odotetaan yhteyksiä:
-        tomcat.start();
-        tomcat.getServer().await();
-    }
+		// Käynnistetään palvelin ja odotetaan yhteyksiä:
+		tomcat.start();
+		tomcat.getServer().await();
+	}
 }
