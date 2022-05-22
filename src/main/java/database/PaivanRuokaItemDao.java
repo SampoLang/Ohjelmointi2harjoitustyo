@@ -10,7 +10,7 @@ public interface PaivanRuokaItemDao {
 
 	public boolean addItem(PaivanRuokaItem newItem);
 
-	public boolean removeItem(PaivanRuokaItem item);
+	public boolean removeRuoka(PaivanRuokaItem item);
 
 	public List<PaivanRuokaItem> haeEhdoilla(String vaikeusaste, double valmistusaika);
 }

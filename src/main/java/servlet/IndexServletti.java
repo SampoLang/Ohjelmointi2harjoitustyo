@@ -15,7 +15,7 @@ import database.PaivanRuokaItem;
 
 @WebServlet("")
 public class IndexServletti extends HttpServlet {
-
+	// PLACEHOLDER GET METODI, ETTÄ POST TOIMII KUNNOLLA
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String aikaString = LocalTime.now().toString();
@@ -27,7 +27,9 @@ public class IndexServletti extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 	}
 
-	// Lisää ruoan tietokantaan
+	// POSTMETODI JOKA LISÄÄ RUOAN TIETOKANTAAN JA ILMOITTAA ONNISTUNEESTA
+	// LISÄYKSESTÄ
+	// OHJAA TAKAISIN LOMAKESIVULLE(ETUSIVU)
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		PrintWriter out = resp.getWriter();

@@ -15,7 +15,7 @@ import database.PaivanRuokaItem;
 
 @WebServlet("/paivanruoka")
 public class PaivanRuokaServlet extends HttpServlet {
-	// hakee tietokannasta ruoan annetuilla ehdoilla
+	// HAKEE TIETOKANNASTA RUOAN ANNETUILLA EHDOILLA VAIKEUSASTE JA VALMISTUSAIKA
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		JDBCPaivanruokaDao dao = new JDBCPaivanruokaDao();

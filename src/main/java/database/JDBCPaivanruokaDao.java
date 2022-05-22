@@ -10,6 +10,7 @@ import java.util.List;
 public class JDBCPaivanruokaDao implements PaivanRuokaItemDao {
 	private final String URL = "jdbc:sqlite:C:\\tietokanta\\ruokalista.db";
 
+	// VALITAAN KAIKKI RUOAT TIETOKANNASTA, TOIMII MUTTA EI KÄYTTÖÄ SOVELLUKSESSA
 	@Override
 	public List<PaivanRuokaItem> getAllItems() {
 		List<PaivanRuokaItem> items = new ArrayList<PaivanRuokaItem>();
@@ -42,6 +43,8 @@ public class JDBCPaivanruokaDao implements PaivanRuokaItemDao {
 		return items;
 	}
 
+	// VALITSE RUOKA TIETOKANNASTA ID:N PERUSTEELLA. AIKA LOPPUI MYÖS TÄMÄN
+	// TOTEUTUKSESSA
 	@Override
 	public PaivanRuokaItem valitseRuoka(long id) {
 		try {
@@ -67,6 +70,7 @@ public class JDBCPaivanruokaDao implements PaivanRuokaItemDao {
 
 	}
 
+	// LISÄTÄÄN RUOKA TIETOKANTAAN
 	@Override
 	public boolean addItem(PaivanRuokaItem uusiRuoka) {
 		try {
@@ -88,18 +92,22 @@ public class JDBCPaivanruokaDao implements PaivanRuokaItemDao {
 		}
 	}
 
+	// TARKOITUKSENA OLI TEHDÄ MYÖS MAHDOLLISUUS RUOAN POISTOON MUTTA AIKA LOPPUI
+	// KESKEN
 	@Override
-	public boolean removeItem(PaivanRuokaItem item) {
+	public boolean removeRuoka(PaivanRuokaItem ruoka) {
+		// TARKISTAA LÖYTYYKÖ RUOKA
 		try {
 			Connection connection = DriverManager.getConnection(URL);
 			PreparedStatement checkIfExists = connection
-					.prepareStatement("SELECT * FROM PaivanRuokaItem WHERE title = ?");
-			checkIfExists.setString(1, item.getNimi());
+					.prepareStatement("SELECT * FROM PaivanRuokaItem WHERE nimi = ?");
+			checkIfExists.setString(1, ruoka.getNimi());
 			ResultSet success = checkIfExists.executeQuery();
+			// JOS RUOKA LÖYTYY SE POISTETAAN
 			if (success.next()) {
 				PreparedStatement deleteQuery = connection
-						.prepareStatement("DELETE FROM PaivanRuokaItem WHERE title = ?");
-				deleteQuery.setString(1, item.getNimi());
+						.prepareStatement("DELETE FROM PaivanRuokaItem WHERE nimi = ?");
+				deleteQuery.setString(1, ruoka.getNimi());
 				deleteQuery.executeUpdate();
 				connection.close();
 				deleteQuery.close();
@@ -115,6 +123,7 @@ public class JDBCPaivanruokaDao implements PaivanRuokaItemDao {
 		}
 	}
 
+	// HAKEE JA PALAUTTAA LISTAN RUOISTA EHDOILLA VALMISTUSAIKA JA VAIKEUSASTE
 	@Override
 	public List<PaivanRuokaItem> haeEhdoilla(String vaikeusaste, double valmistusaika) {
 		List<PaivanRuokaItem> ruoat = new ArrayList<PaivanRuokaItem>();
